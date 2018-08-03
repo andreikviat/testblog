@@ -16,8 +16,8 @@
     <div style="margin: auto; padding: 20px; max-width: 300px;">
         <h1>Create new Post</h1>
         <form action="/post/create" method="post" enctype="multipart/form-data">
-            <p><input type="text" name="title" placeholder="Title"></p>
-            <p><input type="text" name="short_description" placeholder="Short description"></p>
+            <p><input type="text" name="title" placeholder="Title" size="65"></p>
+            <p><input type="text" name="short_description" placeholder="Short description" size="65"></p>
             <p><textarea type="text" name="content" placeholder="Content" rows="25" cols="65"></textarea></p>
             <p><input type="file" name="image" placeholder="Upload" "></p>
             <p><button type="submit">Create</button></p>

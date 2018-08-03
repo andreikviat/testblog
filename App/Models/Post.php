@@ -60,9 +60,16 @@ class Post extends Model
 
     }
 
-    protected function update()
+    public function update()
     {
-
+        $sql = 'UPDATE posts set title=:title, short_description=:short_description, content=:content, image=:image WHERE id=:id';
+        $db = new Db();
+        $data[':title'] = $this->title;
+        $data[':short_description'] = $this->short_description;
+        $data[':content'] = $this->content;
+        $data[':image'] = $this->image;
+        $data[':id'] = $this->id;
+        $db->execute($sql,$data);
     }
 
 
