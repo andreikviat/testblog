@@ -35,6 +35,14 @@ class User extends Model
         return $db->query($sql, $data, static::class);
     }
 
+    public static function findByEmail($email)
+    {
+        $sql = 'SELECT * FROM users WHERE email=:email';
+        $db = new Db();
+        $data[':email'] = $email;
+        return $db->query($sql, $data, static::class);
+    }
+
     public function delete()
     {
         // TODO: Implement delete() method.
