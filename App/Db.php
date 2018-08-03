@@ -25,7 +25,7 @@ class Db
         if ($sth->execute($data)){
             return $sth->fetchAll(\PDO::FETCH_CLASS, $class);
         } else {
-            echo 'что-то пошло не так';
+            echo 'Database query error';
         }
 
     }

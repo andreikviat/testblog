@@ -10,6 +10,7 @@
     </header>
 
      <div style="margin: auto; padding: 20px; max-width: 300px;">
+         <p><a href="/user/signUp">Don’t have an account? Join now</a></p>
 
         <form action="/user/signIn" method="post" style="size:">
             <p><input type="text" name="email" placeholder="Email"></p>

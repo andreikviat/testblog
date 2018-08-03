@@ -10,18 +10,20 @@
     </header>
 
     <div style="margin: auto; padding: 20px; max-width: 300px;">
+        <p><a href="/user/signIn">Already registered? Sign in.</a></p>
 
         <form action="/user/signUp" method="post" style="size:">
             <p><input type="text" name="name" placeholder="Username"></p>
+            <p style="color: red"><?php echo $this->errors['1']?></p>
             <p><input type="text" name="email" placeholder="Email"></p>
+            <p style="color: red"><?php echo $this->errors['2']?></p>
             <p><input type="password" name="password" placeholder="Password"></p>
+            <p style="color: red"><?php echo $this->errors['3']?></p>
             <p><input type="password" name="confirmpassword" placeholder="Confirm Password"></p>
+            <p style="color: red"><?php echo $this->errors['4']?></p>
             <p><button type="submit">Sign In</button></p>
         </form>
     </div>
-    <?php foreach ($this->errors as $value) { ?>
-        <p style="color: red"><?php echo $value;?></p>
-    <?php } ?>
 
     <footer>
 

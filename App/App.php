@@ -50,4 +50,37 @@ class App
         }
     }
 
+    public static function validateUserName($username):bool
+    {
+        if (1===preg_match('/^[a-zA-Z][a-zA-Z0-9]{0,15}/',$username)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public static function validateEmail($email):bool
+    {
+        if ($email===filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            return true;
+        } else return false;
+
+    }
+
+    public static function validatePassword($password):bool
+    {
+        if (1 === preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/',$password)) {
+            return true;
+    } else {
+            return false;
+        }
+
+    }
+
+    public static function validateConfirmPassword($password1, $password2):bool
+    {
+        return ($password1===$password2 )? true : false;
+    }
+
 }
