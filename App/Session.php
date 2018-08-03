@@ -12,9 +12,9 @@ namespace App;
 class Session
 {
     private const SESSION_STARTED = TRUE;
-    private const SESSION_NOT_STARED = FALSE;
+    private const SESSION_NOT_STARTED = FALSE;
 
-    private $sessionState = self::SESSION_NOT_STARED;
+    private $sessionState = self::SESSION_NOT_STARTED;
 
     private static $instance;
 
@@ -54,7 +54,8 @@ class Session
     {
         if (isset ($_SESSION[$name])){
             return $_SESSION[$name];
-        }
+        } else
+            return null;
     }
 
     public function __isset($name)
