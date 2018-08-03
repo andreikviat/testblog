@@ -26,7 +26,10 @@
             <p style="text-align: right"><?php echo date('d/m/y',strtotime($post->date)); ?> by <?php echo $post->user; ?></p>
         </article>
     </div>
-    <?php }?>
+    <?php } if ($this->user->role == '2') { ?>
+        <p style="text-align: center"><a href="/post/edit/<?php echo $post->id?>">Edit post</a></p>
+        <p style="text-align: center"><a href="/post/delete/<?php echo $post->id?>">Delete post</a></p>
+        <?php } ?>
 
 
     <footer>

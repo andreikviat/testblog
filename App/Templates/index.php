@@ -14,6 +14,10 @@
         <div style="color: white; margin-left: auto; margin-right: 0; margin-top: 25px; max-width: 150px;"><a style="color: white" href="/user/signIn">Sign In</a> / <a href="/user/signUp" style="color: white">SignUp</a></div>
         <?php } ?>
     </header>
+        <?php if ($this->user->role == '2') {?>
+            <div style="background-color: darkslategray; width: 200px; height: 50px; margin: 5px auto;"><a href="/post/create" style="color: white;"><h1>Add new Post</h1></a></div>
+
+     <?php } ?>
 
 
     <?php foreach ($this->posts as $post){?>

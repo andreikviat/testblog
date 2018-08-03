@@ -32,4 +32,32 @@ class Post extends Controller
         $this->view->display('post.php');
     }
 
+    public function actionCreate()
+    {
+
+    }
+
+    public function actionEdit($id)
+    {
+
+    }
+
+    public function actionDelete($id)
+    {
+       $post = \App\Models\Post::findById($id)[0];
+       $post->delete();
+       $this->redirect();
+
+    }
+
+    public  function access(): bool
+    {
+        if (($this->session->userRole == '2')){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 }

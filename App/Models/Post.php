@@ -13,7 +13,6 @@ use App\Db;
 
 class Post extends Model
 {
-    protected const TABLE = 'posts';
 
     public $id;
     public $title;
@@ -48,7 +47,7 @@ class Post extends Model
         return $db->query($sql, $data, static::class);
     }
 
-    protected function insert()
+    public function insert()
     {
         // TODO: Implement insert() method.
     }
