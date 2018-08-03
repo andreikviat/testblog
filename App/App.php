@@ -11,9 +11,9 @@ namespace App;
 class App
 {
     public const USER_ROLE = [
-        'Guest' => 0,
-        'User' => 1,
-        'Writer' => 2,
+        'Guest' => '0',
+        'User' => '1',
+        'Writer' => '2',
         ];
 
     protected static $session;
@@ -25,13 +25,10 @@ class App
 
     public static function init()
     {
-        //require __DIR__ . '/autoload.php';
-
         self::$session = Session::getInstance();
-        if (!isset($session->userId) && !isset($session->userRole)){
+        if (!isset(self::$session->userId) && !isset(self::$session->userRole)){
             self::$session->userId = 0;
             self::$session->userRole = self::USER_ROLE['Guest'];
-
         }
 
     }

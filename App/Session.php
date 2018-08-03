@@ -50,7 +50,7 @@ class Session
         $_SESSION[$name] = $value;
     }
 
-    public function __get($name)
+    public  function __get($name)
     {
         if (isset ($_SESSION[$name])){
             return $_SESSION[$name];
@@ -58,12 +58,12 @@ class Session
             return null;
     }
 
-    public function __isset($name)
+    public  function __isset($name)
     {
         return isset($_SESSION[$name]);
     }
 
-    public function __unset($name)
+    public  function __unset($name)
     {
         unset ($_SESSION[$name]);
     }

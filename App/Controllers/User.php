@@ -13,40 +13,60 @@ class User extends Controller
 {
     public function actionSignIn()
     {
-        if (! $this->access()){
-            $this->redirect();
-        } else {
-            $email = $_POST['email'] ?? null ;
-            $password = $_POST['password'] ?? null;
-            var_dump($email);
-            var_dump($password);
-            if (null!=$email && null!=$password) {
-                try {
-                    $user = \App\Models\User::getUser($email, $password);
-                    $this->sesson->userId = $user->id;
-                    $this->sesson->userRole = $user->role;
-                } catch (\Exception $e) {
-                    $this->errors[] = $e->getMessage();
-                }
-            }
-            $this->view->errors = $this->errors;
-            $this->view->display('signin.php');
 
+
+        if (!$this->access()){
+               $this->redirect();
+        }
+        if (isset($_POST['email'])&& isset($_POST['password'])) {
+            $this->authorisateUser($_POST['email'], $_POST['password']);
+            $this->view->display('signin.php');
+        }else {
+            $this->view->display('signin.php');
         }
 
     }
     public function actionSignUp()
     {
+        if (! $this->access()) {
+            $this->redirect();
+        }
+        $user = new \App\Models\User();
+        $user->email = $_POST['email'];
+        $user->role = 1;
+        $user->name = $_POST['name'] ?? null;
+        $user->passwordHash = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $user->insert();
+        $this->view->errors = $this->errors;
+        $this->view->display('signup.php');
 
     }
 
     protected function access():bool
     {
-        if ($this->sesson->userRole === 1 || $this->sesson->userRole === 2){
-            return false;
-        } else {
+        if (($this->session->userRole == '0')){
             return true;
+        } else {
+            return false;
         }
+    }
+
+    protected function authorisateUser($email, $password)
+    {
+
+        try{
+            $user = \App\Models\User::getUser($email, $password);
+
+            $this->session->userId = $user->id;
+            $this->session->userRole = $user->role;
+
+            $this->redirect();
+        } catch (\Exception $e) {
+            $this->errors[] = $e->getMessage();
+        }
+        $this->view->errors = $this->errors;
+
+
     }
 
 

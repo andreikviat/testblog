@@ -38,9 +38,22 @@ class User extends Model
     public static function findByEmail($email)
     {
         $sql = 'SELECT * FROM users WHERE email=:email';
-        $db = new Db();
+                $db = new Db();
         $data[':email'] = $email;
+
         return $db->query($sql, $data, static::class);
+    }
+
+    public static function getUser ($email,$password)
+    {
+        $user = self::findByEmail($email)[0];
+       if (null!==$user && password_verify($password, $user->passwordHash))
+        {
+            return $user;
+        }
+        else {
+            throw new \Exception('Check your email and password');
+        }
     }
 
     public function delete()
@@ -55,7 +68,14 @@ class User extends Model
 
     public function insert()
     {
-        // TODO: Implement insert() method.
+        $sql = 'INSERT INTO Users (name, email, role, passwordHash) VALUES (:name,:email, :role, :passwordHash)';
+        $db = new Db();
+        $data[':name'] = $this->name;
+        $data[':email'] = $this->email;
+        $data[':role'] = $this->role;
+        $data[':passwordHash'] = $this->passwordHash;
+        $db->execute($sql, $data);
+        $this->id = $db->getLastId();
     }
 
     public function update()

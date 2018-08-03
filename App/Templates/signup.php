@@ -11,7 +11,7 @@
 
     <div style="margin: auto; padding: 20px; max-width: 300px;">
 
-        <form action="/user/signIn" method="post" style="size:">
+        <form action="/user/signUp" method="post" style="size:">
             <p><input type="text" name="name" placeholder="Username"></p>
             <p><input type="text" name="email" placeholder="Email"></p>
             <p><input type="password" name="password" placeholder="Password"></p>

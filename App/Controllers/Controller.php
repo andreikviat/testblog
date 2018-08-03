@@ -16,17 +16,24 @@ abstract class Controller
 {
     protected $view;
 
-    protected $sesson;
+    protected $session;
+
+    protected $errors =[];
 
     public function __construct(Session $session)
     {
-        $this->sesson = $session;
+        $this->session = $session;
         $this->view = new View();
     }
 
-    public function access():bool
+    protected function access():bool
     {
         return true;
+    }
+
+    protected function redirect()
+    {
+        header('location: http://' . $_SERVER['SERVER_NAME'].'/index.php');
     }
 
 

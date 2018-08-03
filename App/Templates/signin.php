@@ -17,9 +17,9 @@
             <p><button type="submit">Sign In</button></p>
         </form>
     </div>
-        <?php foreach ($this->errors as $value) { ?>
+        <?php if (!empty($this->errors)){ foreach ($this->errors as $value) { ?>
             <p style="color: red"><?php echo $value;?></p>
-        <?php } ?>
+        <?php }} ?>
 
     <footer>
 

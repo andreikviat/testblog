@@ -6,8 +6,13 @@
 </head>
 <body>
     <div style="width: 900px; margin: auto;">
-    <header style="background-color: grey; height: 75px; padding: 5px;">
-        <div id="logo" style="margin: auto; width: 100px;"><h1 style="color: white;">Blog!</h1></div>
+    <header style="background-color: grey; height: 75px; padding: 5px; width: 100%">
+        <div id="logo" style="width: 100px;"><h1 style="color: white; float: left;">Blog!</h1></div>
+        <?php if (!empty($this->user)) { ?>
+        <div style="color: white; margin-left: auto; margin-right: 0; margin-top: 25px; max-width: 150px;"><p style="color: white">Welcome, <?php echo $this->user->name;?></p></div>
+        <?php } else { ?>
+        <div style="color: white; margin-left: auto; margin-right: 0; margin-top: 25px; max-width: 150px;"><a style="color: white" href="/user/signIn">Sign In</a> / <a href="/user/signUp" style="color: white">SignUp</a></div>
+        <?php } ?>
     </header>
 
 

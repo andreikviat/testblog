@@ -17,6 +17,8 @@ class Post extends Controller
     public function actionIndex()
     {
         $posts = \App\Models\Post::findAll();
+        $user = User::findById($this->session->userId)[0];
+        $this->view->user = $user;
         $this->view->posts = $posts;
         $this ->view->display('index.php');
     }
