@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Blog - SignIn</title>
+    <title>Blog - SignUp</title>
 </head>
 <body>
 <div style="width: 900px; margin: auto;">
