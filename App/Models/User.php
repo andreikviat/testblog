@@ -56,16 +56,6 @@ class User extends Model
         }
     }
 
-    public function delete()
-    {
-        // TODO: Implement delete() method.
-    }
-
-    public function save()
-    {
-        // TODO: Implement save() method.
-    }
-
     public function insert()
     {
         $sql = 'INSERT INTO Users (name, email, role, passwordHash) VALUES (:name,:email, :role, :passwordHash)';
@@ -77,11 +67,4 @@ class User extends Model
         $db->execute($sql, $data);
         $this->id = $db->getLastId();
     }
-
-    public function update()
-    {
-        // TODO: Implement update() method.
-    }
-
-
 }

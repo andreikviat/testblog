@@ -34,6 +34,34 @@ class Post extends Controller
 
     public function actionCreate()
     {
+        $user = User::findById($this->session->userId)[0];
+        $this->view->user = $user;
+        if ($this->access()){
+            if (empty($_POST)){
+                $this->view->display('newpost.php');
+            }else {
+                $post = new \App\Models\Post();
+                $post->title = $_POST['title'];
+                $post->short_description = $_POST['short_description'];
+                $post->content = $_POST['content'];
+                if (isset($_FILES['image'])) {
+                    if (0 == $_FILES['image']['error'] && ('image/jpeg' == mime_content_type($_FILES['image']['tmp_name']))) {
+                        move_uploaded_file($_FILES['image']['tmp_name'], __DIR__ . '/../../images/' . $_FILES['image']['name']);
+                        $post->image = $_FILES['image']['name'];
+                    } else {
+                        $post->image = 'image1.jpg';
+                    }
+                } else {
+                    $post->image = 'image1.jpg';
+                }
+                $post->user_id = $this->session->userId;
+                $post->insert();
+                $this->redirect();
+            }
+        } else {
+            $this->redirect();
+        }
+
 
     }
 
@@ -44,9 +72,14 @@ class Post extends Controller
 
     public function actionDelete($id)
     {
-       $post = \App\Models\Post::findById($id)[0];
-       $post->delete();
-       $this->redirect();
+        if ($this->access()){
+            $post = \App\Models\Post::findById($id)[0];
+            $post->delete();
+            $this->redirect();
+        } else {
+            $this->redirect();
+        }
+
 
     }
 

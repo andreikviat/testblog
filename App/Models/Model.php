@@ -10,11 +10,9 @@ abstract class Model
     abstract public static function findAll();
 
 
-   abstract public static function findById($id);
+    abstract public static function findById($id);
 
 
     abstract protected function insert();
-    abstract protected function update();
-    abstract public function delete();
-    abstract public function save();
+
 }

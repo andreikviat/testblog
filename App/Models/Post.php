@@ -49,7 +49,15 @@ class Post extends Model
 
     public function insert()
     {
-        // TODO: Implement insert() method.
+        $sql= 'INSERT INTO posts (title, short_description, content, image, user_id) VALUES (:title, :short_description, :content, :image, :user_id)';
+        $db = new Db();
+        $data[':title'] = $this->title;
+        $data[':short_description'] = $this->short_description;
+        $data[':content'] = $this->content;
+        $data[':image'] = $this->image;
+        $data[':user_id'] = $this->user_id;
+        $db->execute($sql,$data);
+
     }
 
     protected function update()
@@ -57,10 +65,6 @@ class Post extends Model
 
     }
 
-    public function save()
-    {
-
-    }
 
 
 }
