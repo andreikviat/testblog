@@ -26,6 +26,8 @@ class Post extends Controller
     public function actionView($id)
     {
         $post = \App\Models\Post::findById($id);
+        $user = User::findById($this->session->userId)[0];
+        $this->view->user = $user;
         $this->view->posts = $post;
         $this->view->display('post.php');
     }
