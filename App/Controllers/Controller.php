@@ -9,13 +9,18 @@
 namespace App\Controllers;
 
 
+use App\Session;
 use App\View;
 
 abstract class Controller
 {
     protected $view;
-    public function __construct()
+
+    protected $sesson;
+
+    public function __construct(Session $session)
     {
+        $this->sesson = $session;
         $this->view = new View();
     }
 
